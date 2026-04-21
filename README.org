@@ -1,0 +1,36 @@
+#+TITLE: mtwm
+#+DESCRIPTION: A Wayland window manager in Common Lisp, for the River compositor.
+
+A(n attempt at a) Wayland window manager in Common Lisp, for the [[https://isaacfreund.com/software/river/][River]] compositor.
+
+Don't get too excited, because:
+
+* Status
+
+Hugely work-in-progress and not really worth looking at right now. It connects to River but doesn't do anything other than that yet. But Soon™, hopefully.
+
+"mtwm" is just the working name for this project until I come up with a better one. Especially if it's tree-related, in tribute to [[https://github.com/stumpwm/stumpwm][my X window manager of choice]].
+
+* Usage
+
+~src/protocols~ contains the River protocols as Common Lisp, generated from the XML protocol specifications in ~protocols~. ~src/scripts/generate-protocols.lisp~ is the script that is used to generate them.
+
+To actually start ~mtwm~:
+
+1. Start River:
+
+#+begin_src
+WAYLAND_DEBUG=1 river -log-level debug
+#+end_src
+
+2. Start your Lisp.
+
+3. Load the ~mtwm~ ASDF system:
+
+#+begin_src lisp
+  (ql:quickload 'mtwm)
+#+end_src
+
+4. Run ~(mtwm:main)~.
+
+5. Be amazed that nothing notable happens.
