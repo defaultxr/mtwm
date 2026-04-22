@@ -1,10 +1,10 @@
-;;;; river-window-management-v1.lisp - Generated River protocol binding
-
+;;;; river-window-management-v1.lisp - Auto-generated binding for River's "river-window-management-v1" protocol.
 
 (UIOP/PACKAGE:DEFINE-PACKAGE "MTWM.RIVER-WINDOW-MANAGEMENT-V1"
                              (:USE #:CL
-                              "COM.ANDREWSOUTAR.CL-WAYLAND-CLIENT/CORE"))(in-package #:MTWM.RIVER-WINDOW-MANAGEMENT-V1)
+                              #:COM.ANDREWSOUTAR.CL-WAYLAND-CLIENT/CORE))
 
+(in-package #:MTWM.RIVER-WINDOW-MANAGEMENT-V1)
 
 (PROGN
  "

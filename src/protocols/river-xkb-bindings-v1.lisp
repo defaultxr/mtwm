@@ -1,11 +1,11 @@
-;;;; river-xkb-bindings-v1.lisp - Generated River protocol binding
-
+;;;; river-xkb-bindings-v1.lisp - Auto-generated binding for River's "river-xkb-bindings-v1" protocol.
 
 (UIOP/PACKAGE:DEFINE-PACKAGE "MTWM.RIVER-XKB-BINDINGS-V1"
                              (:USE #:CL
-                              "COM.ANDREWSOUTAR.CL-WAYLAND-CLIENT/CORE"
-                              "MTWM.RIVER-WINDOW-MANAGEMENT-V1"))(in-package #:MTWM.RIVER-XKB-BINDINGS-V1)
+                              #:COM.ANDREWSOUTAR.CL-WAYLAND-CLIENT/CORE
+                              "MTWM.RIVER-WINDOW-MANAGEMENT-V1"))
 
+(in-package #:MTWM.RIVER-XKB-BINDINGS-V1)
 
 (PROGN
  "
