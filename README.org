@@ -1,36 +1,85 @@
 #+TITLE: mtwm
+#+DATE: <2026-04-21 Tue 16:43>
 #+DESCRIPTION: A Wayland window manager in Common Lisp, for the River compositor.
 
-A(n attempt at a) Wayland window manager in Common Lisp, for the [[https://isaacfreund.com/software/river/][River]] compositor.
+A(n attempt at a) Wayland window manager in Common Lisp, for the River compositor.
 
-Don't get too excited, because:
+Don't get too excited yet, because:
 
 * Status
-
 Hugely work-in-progress and not really worth looking at right now. It connects to River but doesn't do anything other than that yet. But Soon™, hopefully.
 
 "mtwm" is just the working name for this project until I come up with a better one. Especially if it's tree-related, in tribute to [[https://github.com/stumpwm/stumpwm][my X window manager of choice]].
 
 * Usage
-
-~src/protocols~ contains the River protocols as Common Lisp, generated from the XML protocol specifications in ~protocols~. ~src/scripts/generate-protocols.lisp~ is the script that is used to generate them.
-
-To actually start ~mtwm~:
+** Starting mtwm
+To start mtwm:
 
 1. Start River:
 
-#+begin_src
-WAYLAND_DEBUG=1 river -log-level debug
-#+end_src
+   #+begin_src sh
+     WAYLAND_DEBUG=1 river -log-level debug
+   #+end_src
 
 2. Start your Lisp.
 
-3. Load the ~mtwm~ ASDF system:
+3. Load the mtwm ASDF system:
 
-#+begin_src lisp
-  (ql:quickload 'mtwm)
-#+end_src
+   #+begin_src lisp
+     (ql:quickload 'mtwm)
+   #+end_src
 
 4. Run ~(mtwm:main)~.
 
-5. Be amazed that nothing notable happens.
+5. Be amazed that nothing notable happens, other than the following output that tells you that mtwm has connected to River:
+
+#+begin_quote
+Connecting to Wayland...
+Connected! Entering event loop...
+New seat
+Manage start
+Render start
+#+end_quote
+
+** Generating the protocol bindings
+You probably won't need to generate the River protocol bindings yourself, since this has already been done, the results of which are included in this repository, in [[file:src/protocols/][src/protocols]]. They are loaded and used automatically when you load and run mtwm.
+
+However, if you do need to (re)generate the Common Lisp bindings for River's protocols, the procedure is:
+
+1. Clone mtwm to your Quicklisp local-projects directory (if you haven't already).
+
+2. Clone [[https://github.com/andrewsoutar/cl-wayland-client][cl-wayland-client]] to your Quicklisp local-projects directory.
+
+3. From inside the ~mtwm~ directory, start SBCL, loading the generate-bindings.lisp script and running its ~generate~ function:
+
+   #+begin_src sh
+     sbcl --load 'src/scripts/generate-bindings.lisp' --eval '(mtwm/generator:generate)' --quit
+   #+end_src
+
+* Future
+Things to be done in the future.
+
+- generate-bindings.lisp: use ~asdf:perform~ on ~com.andrewsoutar.cl-wayland-client.generator~ to generate the bindings, rather than calling ~generate-from-xml~ (it's an internal symbol, so we probably shouldn't be touching it).
+
+* Community
+mtwm's repository is hosted both on [[https://codeberg.org/defaultxr/mtwm][codeberg]] and [[https://github.com/defaultxr/mtwm][github]]. There is [[https://matrix.to/#/#mtwm:struct.ws][a Matrix room (#mtwm:struct.ws)]] and [[irc://irc.libera.chat:6697/#mtwm][an IRC channel (#mtwm on irc.libera.chat)]] (with a bridge between them).
+
+Please feel free to help in any way you want and are able to. Suggestions, feature requests, bug reports, documentation, and pull requests are all welcome. Assistance is definitely appreciated since I'm not (yet) very familiar with Wayland, nor even with using SBCL's foreign function interface.
+
+* Similar
+Other projects that are similar, related, or relevant to mtwm.
+
+** [[https://codeberg.org/river/river][River]]
+The Wayland compositor that mtwm is built upon. River does the compositing; mtwm defines the window management, keybindings, etc.
+
+** [[https://github.com/stumpwm/stumpwm][StumpWM]]
+The Common Lisp window manager for X. My window manager of choice, and one that I will be taking a lot of inspiration from for this project.
+
+** [[https://github.com/stumpwm/mahogany][Mahogany]]
+A wlroots-based Wayland compositor and window manager written in Common Lisp. A very cool project that I'm keeping an eye on, and may end up deciding to use instead of mtwm in the future. But the idea of separating the compositor and window manager as River does seems like it will significantly reduce the amount of work needed to create a CL-based Wayland desktop, and thus may be worth doing. Hence mtwm.
+
+** [[https://github.com/malcolmstill/ulubis][Ulubis]]
+A (now defunct?) attempt at a Wayland compositor in Common Lisp. Unfortunately, there has been no development activity in over 6 years.
+
+** [[https://github.com/szos/SDB][SDB]]
+The StumpWM debugger; a (Mc)CLIM-based graphical debugger for StumpWM. I didn't have much luck with it, so I ended up removing it from my StumpWM config, but it's a cool project, and maybe could be retrofit into mtwm and/or Mahogany in the future.
