@@ -6,10 +6,10 @@
   :version "0.1"
   :author "modula t."
   :license "MIT"
-  :homepage "https://github.com/defaultxr/mtwm"
-  :bug-tracker "https://github.com/defaultxr/mtwm/issues"
+  :homepage "https://codeberg.org/defaultxr/mtwm"
+  :bug-tracker "https://codeberg.org/defaultxr/mtwm/issues"
   :mailto "modula-t at pm dot me"
-  :source-control (:git "git@github.com:defaultxr/mtwm.git")
+  :source-control (:git "git@codeberg.org:defaultxr/mtwm.git")
   :depends-on (#:alexandria
                #:mutility
                #:cffi
