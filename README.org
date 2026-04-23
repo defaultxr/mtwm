@@ -2,16 +2,27 @@
 #+DATE: <2026-04-21 Tue 16:43>
 #+DESCRIPTION: A Wayland window manager in Common Lisp, for the River compositor.
 
-A(n attempt at a) Wayland window manager in Common Lisp, for the River compositor.
+A(n attempt at a) Wayland window manager in Common Lisp, for the [[https://codeberg.org/river/river][River]] compositor.
 
 Don't get too excited yet, because:
 
 * Status
 Hugely work-in-progress and not really worth looking at right now. It connects to River but doesn't do anything other than that yet. But Soon™, hopefully.
 
-"mtwm" is just the working name for this project until I come up with a better one. Especially if it's tree-related, in tribute to [[https://github.com/stumpwm/stumpwm][my X window manager of choice]].
+"mtwm" is just the working name for this project until I come up with a better one. Especially if it's tree-related, in tribute to [[https://github.com/stumpwm/stumpwm][StumpWM]].
 
 * Usage
+
+** Setting up mtwm
+Before you can start mtwm, you will need to ensure its dependencies are installed:
+
+- [[https://sbcl.org][SBCL]] (mtwm has not yet been tested on any other Lisp implementation)
+- [[https://codeberg.org/river/river][River]] (obviously)
+- [[https://github.com:andrewsoutar/asdf-generated-system][asdf-generated-system]]
+- [[https://github.com:andrewsoutar/cl-wayland-client][cl-wayland-client]]
+
+Since asdf-generated-system and cl-wayland-client are not available on Quicklisp (yet?), you will need to manually clone their repos into your Quicklisp local-projects directory. The other Lisp systems that mtwm requires will be installed automatically if you have Quicklisp installed and set up.
+
 ** Starting mtwm
 To start mtwm:
 
