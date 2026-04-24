@@ -167,7 +167,6 @@
   (info "Connecting to Wayland...")
 
   ;; Connect to display
-  ;; (setf *display* (wl-display-connect wayland-display))
   (setf *display* (wl-display-connect wayland-display))
   ;; (when (null-pointer-p *display*)
   ;;   (error "Failed to connect to River"))
